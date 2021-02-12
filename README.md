@@ -8,20 +8,27 @@ npx create-react-app project1 --template typescript
 ### Add Tailwind CSS to the project
 ```
 yarn add tailwindcss node-sass
-yarn add -D autoprefixer postcss-nested postcss-cli npm-run-all postcss-import postcss-preset-env
+yarn add -D autoprefixer postcss-nested postcss-cli npm-run-all postcss-import postcss-preset-env @fullhuman/postcss-purgecss
 ```
 
 ### Create a new file called postcss.config.js on the root of the app with the code below.
 ```
 module.exports = {
     plugins: [
+        require('tailwindcss'),
+        require('autoprefixer'), 
         require('postcss-import'),
         require('postcss-preset-env')({
-            stage: 1,
+        stage: 1,
         }),
         require('postcss-nested'),
-        require('tailwindcss'),
-        require('autoprefixer'),
+        require('@fullhuman/postcss-purgecss')({
+            content: [
+                './src/**/*.{js,jsx,ts,tsx}', 
+                './public/index.html'
+            ],
+            defaultExtractor: content => content.match(/[A-Za-z0-9-_:/]+/g) || []
+        })
     ],
 };
 ```
@@ -39,9 +46,6 @@ module.exports = {
     "eject": "react-scripts eject"
 }
 ```
-
-
-
 
 ## Available Scripts
 
@@ -89,3 +93,4 @@ To learn React, check out the [React documentation](https://reactjs.org/).
 ## References
 https://dev.to/puritanic/add-postcss-to-create-react-app--5hj8
 https://dev.to/elisealcala/start-a-component-library-with-storybook-tailwind-and-typescript-2ofa
+https://gorails.com/episodes/purgecss

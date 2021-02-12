@@ -13,7 +13,7 @@ export interface HeaderProps {
 export const Header: React.FC<HeaderProps> = ({ user, onLogin, onLogout, onCreateAccount }) => (
   <header>
     <div className="wrapper">
-    <p className="text-bea">Meroon color</p>
+    <p className="text-cute-color">Meroon color</p>
       <div>
         <svg width="32" height="32" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
           <g fill="none" fillRule="evenodd">
